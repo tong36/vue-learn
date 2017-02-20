@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<div id="app1">
+		<input v-model='msg'/>
+		<input v-model='msg'/>
+		<hr>
+		{{msg}}
+		<hr />
+		{{msg2}}
+		<hr />
+		{{msg3}}
+		<hr />
+		<ul>
+			<li v-for='(to, index) in msg2'>
+				{{to}}  {{index}}
+			</li>
+		</ul>
+		<ol>
+			<li v-for='(to, index) in msg3'>
+				{{to}}  {{index}}
+			</li>
+		</ol>
+		<hr  />
+		<ul>
+			<li v-for='(k,v)to in msg3'>
+				{{v}}  {{k}}
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../js/vue.js" ></script>
+	<script>
+		new Vue({
+			el: '#app1',
+			data: {
+				msg: 'hello',
+				msg2: ['ao','bo','co'],
+				msg3: {'a':'ao','b':'bo','c':'co'}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../js/vue.js"></script>
+		<script src="../js/jquery-3.1.1.js"></script>
+		<div id="box">
+			<input v-model='msg' @keyup.13='down' placeholder='请输入任务' />
+			<ol v-show='this.arr.length !== 0'>
+				<li  v-for='(todo, index) in arr' @click='arr.splice(index,1)'>
+					{{todo}}
+				</li>
+			</ol>
+		</div>
+		<script>
+			
+			new Vue({
+				el: '#box',
+				data: {
+					msg: '',
+					nowIndex: 99,
+					arr: []
+				},
+				methods: {
+					down: function() {
+						this.arr.push(this.msg)
+						this.msg = ''
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

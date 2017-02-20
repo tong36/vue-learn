@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<button @dblclick='con1'>click</button>
+			<ol>
+				<li v-for='todo in arr'>
+					{{todo}}
+				</li>
+			</ol>
+		</div>
+		<div id="box2">
+			<div v-show="isShow" style="width:100px; height:100px; border:1px solid red"></div>
+			<button @click='con2'>click</button>
+		</div>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+		<script>
+			new Vue({
+				el: '#box',
+				data: {
+					arr: ['a','b','c','d']
+				},
+				methods: {
+					con1: function() {
+						this.arr.push('e')
+					}
+				}
+			})
+			new Vue({
+				el: '#box2',
+				data: {
+					isShow: true
+				},
+				methods: {
+					con2: function() {
+						this.isShow = !this.isShow
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
