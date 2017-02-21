@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">标题</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-input-row">
+		    <label v-if="show">{{mes}}</label>
+		    <input v-model="mes" type="text" placeholder="普通输入框">
+		</div>
+		<ul v-if='this.list.length !== 0' class="mui-table-view">
+	        <li v-for="todo in list" class="mui-table-view-cell">
+	            <a class="mui-navigate-right">
+	               {{todo}}
+	            </a>
+	        </li>
+	    </ul>
+	    <div id='app1' class="mui-input-row">
+	        <label>{{mes}}</label>
+	        <input v-model="mes" type="text" >
+	        <button @click='reverseMes' type="button" class="mui-btn mui-btn-blue mui-btn-block">按钮</button>
+	    </div>
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: '.mui-input-row',
+			data: {
+				mes: '12',
+				show: true
+			}
+		})
+		new Vue({
+			el: '.mui-table-view',
+			data: {
+				list: ['a','b','c','d',2,3,4]
+			}
+		})
+		new Vue({
+			el: '#app1',
+			data: {
+				mes: 'hello'
+			},
+			methods: {
+				reverseMes: function() {
+					this.mes = this.mes.split('').reverse().join('');
+				}
+			}
+		})
+	</script>
+</body>
+</html>

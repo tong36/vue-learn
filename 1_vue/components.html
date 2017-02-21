@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<one-com></one-com>
+		</div>
+		
+		<div id="box2">
+			<two-com></two-com>
+		</div>
+		
+		<ul id="list">
+			<three-com></three-com>
+		</ul>
+		
+		<ol id="ol_list">
+			<child msg='vue' mm-so='vuex'></child>
+		</ol>
+		
+		<div id="box3">
+			<input type="text" v-model='todo' />
+			<child :mpo='todo'></child>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			Vue.component('one-com',{
+				template: '<p>this is p</p>'
+			})
+			new Vue({
+				el: '#box'
+			})
+			
+			new Vue({
+				el: '#box2',
+				data: {
+					
+				},
+				components: {
+					'two-com': {
+						template: '<span>123</span>'
+					}
+				}
+			})
+			
+			new Vue({
+				el: '#list',
+				components: {
+					'three-com': {
+						template: '<li>opo</li>'
+					}
+				}
+			})
+			
+			Vue.component('child', {
+				props: ['msg','mmSo'],
+				template: '<li>Hello{{msg}}+{{mmSo}}</li>'
+			})
+			new Vue({
+				el: '#ol_list',
+			})
+			
+			new Vue({
+				el: '#box3',
+				data: {
+					todo: '',
+					mpo: ''
+				},
+				components: {
+					'child': {
+						props: ['mpo'],
+						template: '<p>{{mpo}}</p>'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

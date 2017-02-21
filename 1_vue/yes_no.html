@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app1">
+			<p>
+				Ask a yes/no quesition:
+				<input v-model="to" />
+			</p>
+			<p>{{doo}}</p>
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app1',
+				data: {
+					to: '',
+					doo: 'I cannot give you an answer until you ask a question!'
+				},
+				watch: {
+					to: function() {
+						this.do = 'wait...'
+						this.getDo()
+					}
+				},
+				methods: {
+					getDo: _.debounce(
+						function() {
+							var vm = this;
+							if(this.to.indexOf('?') === -1) {
+								vm.doo = '没有号问'
+								return
+							}
+							vm.doo = 'thiking...'
+							axios.get('https://yesno.wtf/api')
+							.then(function (res) {
+								vm.doo = _.capitalize(res.data.answer)
+							})
+							.catch(function(error) {
+								vm.doo = '无法使用这个API'
+							})
+						},
+						500
+					)
+				}
+			})
+		</script>
+	</body>
+</html>

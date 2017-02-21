@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.active{
+				width:100px;
+				height:100px;
+				background-color:tomato;
+			}
+			.radius{
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app1" :style='a'>this is div</div>
+		<script src="js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app1',
+				data: {
+					a: {
+						color: 'red',
+						fontSize: '20px'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<input type="checkbox" id="checkbox" value="1" v-model='checked'/>
+			<label for="checkbox">checkbox</label>
+			<input type="checkbox" id="a" value="2" v-model='checked'/>
+			<label for="a">a</label>
+			<input type="checkbox" id="b" value="3" v-model='checked'/>
+			<label for="b">b</label>
+			<input type="checkbox" id="c" value="4" v-model='checked'/>
+			<label for="c">c</label>
+			
+			<hr />
+			<p v-show='this.checked.length !== 0' >{{checked}}</p>
+		</div>
+		
+		<div id="box2">
+			<input type="radio" id="one" value="0" v-model='msg' />
+			<label for='one'>1</label>
+			<input type="radio" id="two" value="1" v-model='msg' />
+			<label for='two'>2</label>
+			<p>{{msg}}</p>
+		</div>
+		
+		<div id="box3">
+			<select name="" id="" v-model='selected'>
+				<option value="1">a</option>
+				<option value="2">b</option>
+				<option value="3">c</option>
+			</select>
+			<p>{{selected}}</p>
+		</div>
+		
+		<div id="box4">
+			<select v-model='selected' multiple>
+				<option>a</option>
+				<option>b</option>
+				<option>c</option>
+			</select>
+			<p>{{selected}}</p>
+		</div>
+		
+		<div id="box5">
+			<select name="" id="" v-model='msg'>
+				<option v-for='todo in options' :value="todo.value" >
+					{{todo.text1}}
+				</option>
+			</select>
+			<p>{{msg}}</p>
+		</div>
+		<script src="js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#box',
+				data: {
+					checked: []
+				}
+			})
+			new Vue({
+				el: '#box2',
+				data: {
+					msg: ''
+				}
+			})
+			new Vue({
+				el: '#box3',
+				data: {
+					selected: ''
+				}
+			})
+			new Vue({
+				el: '#box4',
+				data: {
+					selected: []
+				}
+			})
+			
+			new Vue({
+				el: '#box5',
+				data: {
+					msg: '',
+					options: [
+						{ text1: '1',value: 'a' },
+						{ text1: '2',value: 'b' },
+						{ text1: '3',value: 'c' }
+					]
+				}
+			})
+		</script>
+	</body>
+</html>
