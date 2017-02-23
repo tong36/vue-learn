@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.list-complete{
+				transition: all 1s;
+				display:inline-block;
+				margin-right:10px;
+			}
+			.list-complete-enter,
+			.list-complete-leave-active{
+				opacity:0;
+				transform:translateY(30px);
+			}
+			.list-complete-leave-active{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<button @click='shuffle'>shuffle</button>
+			<button @click='add'>add</button>
+			<button @click='remove'>remove</button>
+			<transition-group name='list-complete' tag='p'>
+				<span 
+					v-for='item in list'
+					:key='item' 
+					class='list-complete'>
+					{{ item }}
+				</span>
+			</transition-group>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#box',
+				data: {
+					list: [1,2,3,4,5,6,7,8,9],
+					nextNum: 10
+				},
+				methods: {
+					randomIndex: function() {
+						return Math.floor(Math.random() * this.list.length)
+					},
+					add: function() {
+						this.list.splice(this.randomIndex(), 0, this.nextNum++)
+					},
+					remove: function() {
+						this.list.splice(this.randomIndex(), 1)
+					},
+					shuffle: function() {
+						this.list = _.shuffle(this.list)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
